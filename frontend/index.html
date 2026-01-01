@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BookStack Library</title>
+  <style>
+    table, th, td {
+      border: 1px solid #333;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      font-weight: bold;
+    }
+    form div {
+      margin-bottom: 8px;
+    }
+    label {
+      display: inline-block;
+      width: 120px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>BookStack Library</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>ISBN</th>
+    <th>Available Copies</th>
+  </tr>
+  <tr>
+    <td>The Alchemist</td>
+    <td>Paulo Coelho</td>
+    <td>12312</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>Angels &amp; Demons</td>
+    <td>Dan Brown</td>
+    <td>52343</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>White Knight</td>
+    <td>Fyodor Dostoevsky</td>
+    <td>52311</td>
+    <td>2</td>
+  </tr>
+</table>
+
+<h2>Borrow Form</h2>
+
+<form action="/api/loans/" method="post">
+  <div>
+    <label for="b_name">Name:</label>
+    <input type="text" id="b_name" name="borrower_name" placeholder="Enter here..">
+  </div>
+  <div>
+    <label for="b_email">Email id:</label>
+    <input type="email" id="b_email" name="borrower_email" placeholder="e.g. abc@gmail.com">
+  </div>
+  <div>
+    <label for="b_book_title">Book Title</label>
+    <input type="text" id="b_book_title" name="book_title" placeholder="The Alchemist">
+  </div>
+  <div>
+    <label for="b_start_date">Start Date</label>
+    <input type="date" id="b_start_date" name="start_date">
+  </div>
+  <div>
+    <label for="b_due_date">Due Date</label>
+    <input type="date" id="b_due_date" name="due_date">
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
+
+</body>
+</html>
