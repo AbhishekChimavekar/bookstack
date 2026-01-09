@@ -4,8 +4,9 @@
   <title>BookStack Library</title>
   <style>
     table, th, td {
-      border: 1px solid #333;
+      border: 2px solid #333;
       border-collapse: collapse;
+      background-color: #dac292;
     }
     th, td {
       padding: 8px;
@@ -13,13 +14,36 @@
     }
     th {
       font-weight: bold;
+      background-color: #b9936c;
     }
     form div {
-      margin-bottom: 8px;
+      margin-bottom: 15px;
     }
     label {
       display: inline-block;
       width: 120px;
+    }
+    body{
+      background-color: #e6e2d3;
+    }
+    #form_page{
+      display: none;
+      cursor: auto;
+      background-color: #c4b7a6;
+      margin-left: 15%;
+      margin-right: 20%;
+      margin-top: 20px;
+      padding: 15px;
+      border: 3px solid black;
+      border-radius: 5px;
+    }
+    #form_link{
+      margin-block: 10px;
+      cursor: pointer;
+    }
+    input[type="submit"]:focus{
+      background-color: #4C6444;
+      color: white;
     }
   </style>
 </head>
@@ -53,7 +77,9 @@
     <td>2</td>
   </tr>
 </table>
+<div id="form_link" onclick="open_borrow_page()" >Wanna borrow a book...</div>
 
+<div id=form_page>
 <h2>Borrow Form</h2>
 
 <form action="/api/loans/" method="post">
@@ -66,21 +92,28 @@
     <input type="email" id="b_email" name="borrower_email" placeholder="e.g. abc@gmail.com">
   </div>
   <div>
-    <label for="b_book_title">Book Title</label>
+    <label for="b_book_title">Book Title:</label>
     <input type="text" id="b_book_title" name="book_title" placeholder="The Alchemist">
   </div>
   <div>
-    <label for="b_start_date">Start Date</label>
+    <label for="b_start_date">Start Date:</label>
     <input type="date" id="b_start_date" name="start_date">
   </div>
   <div>
-    <label for="b_due_date">Due Date</label>
+    <label for="b_due_date">Due Date:</label>
     <input type="date" id="b_due_date" name="due_date">
   </div>
   <div>
     <input type="submit" value="Submit">
   </div>
 </form>
+</div>
+<script type="text/javascript" charset="utf-8">
+  function open_borrow_page(){
+    var x= document.getElementById("form_page");
+    x.style.display = "block";
+  }
+</script>
 
 </body>
 </html>
