@@ -5,13 +5,31 @@ from .models import Book, Loan
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = "__all__"
+        fields = [
+            "id",
+            "title",
+            "author",
+            "isbn",
+            "available_copies",
+            "created_at",
+            "updated_at",
+        ]
 
 
 class LoanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loan
-        fields = "__all__"
+        fields = [
+            "id",
+            "book",
+            "borrower_name",
+            "borrower_email",
+            "start_date",
+            "due_date",
+            "returned",
+            "created_at",
+            "updated_at",
+        ]
 
     def validate(self, attrs):
         start_date = attrs.get("start_date")
