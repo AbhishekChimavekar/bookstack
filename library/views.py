@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from models import Book, Loan
 from serializers import BookSerializer, LoanSerializer
+from rest_framework.response import Response
 
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all().order_by("title")
@@ -12,4 +13,8 @@ class BookViewSet(viewsets.ModelViewSet):
         books = Book.objects.filter(available_copies__gt=0).order_by("title")
         serializer = self.get_serializer(books, many=True)
         return Response(serializer.data)
+    
+class LoanViewSet(viewsets.ModelViewSet):
+    queryset = Loan.objects.all().order_by("-start_date")
+    serializer_class = LoanSerializer
     
