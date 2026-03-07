@@ -15,3 +15,10 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+*.log
+.env
+.idea/
+.vscode/
+
+bookstack_backend/settings/dev.py

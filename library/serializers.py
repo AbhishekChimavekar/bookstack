@@ -31,13 +31,14 @@ class LoanSerializer(serializers.ModelSerializer):
             "updated_at",
         ]
 
-    def validate(self, attrs):
-        start_date = attrs.get("start_date")
-        due_date = attrs.get("due_date")
+    def validate(self, data):
+        start = data.get("start_date")
+        due = data.get("due_date")
 
-        if start_date and due_date and due_date <= start_date:
+        if start and due and due <= start:
             raise serializers.ValidationError(
-                "Due date must be after start date."
+            "Due date must be after start date."
             )
 
-        return attrs
+        return data
+
