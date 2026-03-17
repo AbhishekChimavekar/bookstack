@@ -4,10 +4,12 @@ from django.db import transaction
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Book, Loan
 from .serializers import BookSerializer, LoanSerializer
+from .permissions import IsAdminOrReadOnly
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 
 class BookViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAdminOrReadOnly]
     queryset = Book.objects.all().order_by("title")
     serializer_class = BookSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
@@ -22,6 +24,7 @@ class BookViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 class LoanViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAdminOrReadOnly]
     queryset = Loan.objects.all().order_by("-start_date")
     serializer_class = LoanSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
