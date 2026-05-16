@@ -1,9 +1,9 @@
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import status
 from rest_framework.response import Response
 
-from .auth_serializers import RegisterSerializer
+from .auth_serializers import RegisterSerializer, ChangePasswordSerializer
 
 
 class RegisterView(APIView):
@@ -33,3 +33,33 @@ class RegisterView(APIView):
             },
             status=status.HTTP_400_BAD_REQUEST,
         )
+
+class ChangePasswordView(APIView):
+    """
+    POST /api/auth/change-password/
+    Requires a valid JWT token.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = ChangePasswordSerializer(
+            data=request.data, context={"request": request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                {
+                    "success": True,
+                    "message": "Password updated successfully.",
+                },
+                status=status.HTTP_200_OK,
+            )
+        return Response(
+            {
+                "success": False,
+                "message": "Password change failed.",
+                "errors": serializer.errors,
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+        
