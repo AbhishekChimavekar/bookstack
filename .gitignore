@@ -1,24 +1,36 @@
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Environment variables
+.env
+.env.*
+
 # Django
 db.sqlite3
 media/
+staticfiles/
 
-# Env
-venv/
-env/
-.env
+# React
+bookstack-frontend/node_modules/
+bookstack-frontend/dist/
+
+# Logs
+*.log
+
+# IDE
+.idea/
+.vscode/
 
 # OS
 .DS_Store
 Thumbs.db
 
-*.log
-.env
-.idea/
-.vscode/
-
+# Local development settings
 bookstack_backend/settings/dev.py

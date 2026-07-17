@@ -12,6 +12,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'library',
     'django_filters',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -22,6 +23,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'bookstack_backend.urls'
@@ -72,3 +74,8 @@ REST_FRAMEWORK = {
     ],
     'EXCEPTION_HANDLER': 'library.utils.custom_exception_handler',
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+
